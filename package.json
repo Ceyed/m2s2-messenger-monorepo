@@ -1,9 +1,14 @@
 {
   "name": "@m2s2/source",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
-  "scripts": {},
   "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "typeorm": "ts-node -P ./tsconfig.base.json -r tsconfig-paths/register --transpile-only node_modules/typeorm/cli.js",
+    "migration": "pnpm run typeorm -- migration:run -t each -d apps/backend/m2s2-server/src/data-source",
+    "config": "ts-node -P ./tsconfig.base.json -r tsconfig-paths/register --transpile-only"
+  },
   "devDependencies": {
     "@nestjs/schematics": "^10.1.1",
     "@nestjs/testing": "^10.3.3",
@@ -55,13 +60,19 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.3.3",
+    "@nestjs/config": "^3.2.0",
     "@nestjs/core": "^10.3.3",
     "@nestjs/platform-express": "^10.3.3",
+    "@nestjs/typeorm": "^10.0.2",
     "@nx/rspack": "^16.8.2",
     "@rspack/core": "^0.2.12",
     "@rspack/plugin-react-refresh": "^0.5.6",
     "axios": "^1.6.7",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "fork-ts-checker-webpack-plugin": "^9.0.0",
     "next": "14.0.4",
+    "pg": "^8.11.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-refresh": "^0.14.0",
@@ -69,7 +80,7 @@
     "rspack-plugin-dotenv": "^0.0.2",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.2",
-    "webpack-node-externals": "3.0.0",
-    "fork-ts-checker-webpack-plugin": "^9.0.0"
+    "typeorm": "^0.3.20",
+    "webpack-node-externals": "3.0.0"
   }
 }
