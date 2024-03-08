@@ -1,22 +1,82 @@
 {
-  "name": "m2s2-server",
+  "name": "backend-m2s2",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/backend/m2s2-server/src",
   "projectType": "application",
   "targets": {
+    "build": {
+      "executor": "@nx/rspack:rspack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "dependsOn": [],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/backend/m2s2-server",
+        "main": "apps/backend/m2s2-server/src/main.ts",
+        "tsConfig": "apps/backend/m2s2-server/tsconfig.app.json",
+        "assets": ["apps/backend/m2s2-server/src/assets"],
+        "isolatedConfig": true,
+        "rspackConfig": "apps/backend/m2s2-server/rspack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": []
+        }
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "m2s2-server:build"
+        "buildTarget": "backend-m2s2:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "m2s2-server:build:development"
+          "buildTarget": "backend-m2s2:build:development"
         },
         "production": {
-          "buildTarget": "m2s2-server:build:production"
+          "buildTarget": "backend-m2s2:build:production"
         }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/backend/m2s2-server/**/*.ts"]
+      }
+    },
+    "migration:create": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npm run typeorm migration:create libs/backend/m2s2-server/src/lib/database/migrations/{args.name}"
+      }
+    },
+    "migration:run": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npm run typeorm -- migration:run -t each -d libs/backend/m2s2-server/src/lib/database/data-source.ts"
+      }
+    },
+    "migration:revert": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npm run typeorm -- migration:revert -t each -d libs/backend/m2s2-server/src/lib/database/data-source.ts"
+      }
+    },
+    "migration:generate": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npm run typeorm -- migration:generate -d libs/backend/m2s2-server/src/lib/database/data-source.ts libs/backend/m2s2-server/src/lib/database/migrations/{args.entity}"
       }
     }
   },
