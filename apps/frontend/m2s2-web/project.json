@@ -1,0 +1,8 @@
+{
+  "name": "m2s2-web",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/frontend/m2s2-web",
+  "projectType": "application",
+  "targets": {},
+  "tags": []
+}

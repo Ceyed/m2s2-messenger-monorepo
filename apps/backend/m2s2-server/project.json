@@ -1,0 +1,24 @@
+{
+  "name": "m2s2-server",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/backend/m2s2-server/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "m2s2-server:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "m2s2-server:build:development"
+        },
+        "production": {
+          "buildTarget": "m2s2-server:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
