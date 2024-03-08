@@ -30,15 +30,8 @@ export class AppConfig {
   }
 }
 
-// export const appConfig = new AppConfig({
-//   host: process.env[APP_CONFIG.HOST],
-//   port: process.env[APP_CONFIG.PORT] ? +process.env[APP_CONFIG.PORT] : 3000,
-//   clientHost: process.env[APP_CONFIG.CLIENT_HOST],
-//   nodeEnv: process.env[APP_CONFIG.NODE_ENV] || 'development',
-// });
-
 export const appConfig = registerConfig(AppConfig, () => {
-  const port = process.env[APP_CONFIG.PORT];
+  const port: string = process.env[APP_CONFIG.PORT];
   return new AppConfig({
     host: process.env[APP_CONFIG.HOST],
     port: port ? +port : undefined,
