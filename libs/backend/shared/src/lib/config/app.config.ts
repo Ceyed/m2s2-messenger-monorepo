@@ -1,4 +1,5 @@
 import { IsIn, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { registerConfig } from '../utils/register.config';
 
 export enum APP_CONFIG {
   HOST = 'HOST',
@@ -25,17 +26,23 @@ export class AppConfig {
   nodeEnv: string;
 
   constructor(obj: Partial<AppConfig>) {
-    // console.log(obj);
-
     Object.assign(this, obj);
   }
 }
 
-export const appConfig = new AppConfig({
-  host: process.env[APP_CONFIG.HOST],
-  port: process.env[APP_CONFIG.PORT] ? +process.env[APP_CONFIG.PORT] : 3000,
-  clientHost: process.env[APP_CONFIG.CLIENT_HOST],
-  nodeEnv: process.env[APP_CONFIG.NODE_ENV] || 'development',
-});
+// export const appConfig = new AppConfig({
+//   host: process.env[APP_CONFIG.HOST],
+//   port: process.env[APP_CONFIG.PORT] ? +process.env[APP_CONFIG.PORT] : 3000,
+//   clientHost: process.env[APP_CONFIG.CLIENT_HOST],
+//   nodeEnv: process.env[APP_CONFIG.NODE_ENV] || 'development',
+// });
 
-// console.log(appConfig);
+export const appConfig = registerConfig(AppConfig, () => {
+  const port = process.env[APP_CONFIG.PORT];
+  return new AppConfig({
+    host: process.env[APP_CONFIG.HOST],
+    port: port ? +port : undefined,
+    clientHost: process.env[APP_CONFIG.CLIENT_HOST],
+    nodeEnv: process.env[APP_CONFIG.NODE_ENV] || 'development',
+  });
+});
