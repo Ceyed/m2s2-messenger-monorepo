@@ -1,6 +1,6 @@
 {
-  "name": "lib-shared",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "name": "backend/shared",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/src",
   "projectType": "library",
   "targets": {

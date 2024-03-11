@@ -33,9 +33,7 @@ export class AppConfig {
 export const appConfig = registerConfig(AppConfig, () => {
   return new AppConfig({
     host: process.env[APP_CONFIG.HOST],
-    port: process.env[APP_CONFIG.PORT]
-      ? +process.env[APP_CONFIG.PORT]
-      : undefined,
+    port: process.env[APP_CONFIG.PORT] ? +process.env[APP_CONFIG.PORT] : undefined,
     clientHost: process.env[APP_CONFIG.CLIENT_HOST],
     nodeEnv: process.env[APP_CONFIG.NODE_ENV] || 'development',
   });

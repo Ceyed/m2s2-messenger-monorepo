@@ -18,10 +18,12 @@ export function registerConfig<
   const instance = plainToClass(classConstructor, configFactory(), {
     exposeDefaultValues: true,
   });
+
   const errors = validateSync(instance);
   if (errors.length > 0) {
     console.log('config instance is: ', instance);
     throw new Error(['Config Validation Error', ...errors.map((x) => x.toString())].join('\n'));
   }
+
   return registerAs(classConstructor.name, () => instance);
 }
