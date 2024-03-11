@@ -24,6 +24,7 @@
     "esModuleInterop": true,
     "paths": {
       "@m2s2/backend/entities": ["libs/backend/m2s2-server/src/lib/database/entities/index.ts"],
+      "@m2s2/backend/dtos": ["libs/backend/m2s2-server/src/lib/dtos/index.ts"],
 
       "@m2s2/backend/shared/configs": ["libs/backend/shared/src/lib/configs/index.ts"],
       "@m2s2/backend/shared/entities": ["libs/backend/shared/src/lib/entities/index.ts"],
