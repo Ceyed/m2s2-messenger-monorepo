@@ -21,7 +21,10 @@
     "baseUrl": ".",
     "strictPropertyInitialization": false,
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@m2s2/lib-shared": ["libs/src/index.ts"]
+    }
   },
   "paths": {},
   "exclude": ["node_modules", "tmp"]
