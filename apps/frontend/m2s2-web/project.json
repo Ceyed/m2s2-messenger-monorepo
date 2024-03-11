@@ -1,8 +1,55 @@
 {
-  "name": "m2s2-web",
+  "name": "frontend-m2s2",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/frontend/m2s2-web",
   "projectType": "application",
-  "targets": {},
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/frontend/m2s2-web",
+        "outputPath": "dist/apps/frontend/m2s2-web"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/frontend/m2s2-web"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "frontend-m2s2:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "frontend-m2s2:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "frontend-m2s2:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "frontend-m2s2:build:production"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/frontend/m2s2-web/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
   "tags": []
 }
