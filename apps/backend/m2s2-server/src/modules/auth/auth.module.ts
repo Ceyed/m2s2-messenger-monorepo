@@ -6,7 +6,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtModuleOptions } from '@nestjs/jwt/dist/interfaces/jwt-module-options.interface';
 import { JwtConfig, jwtConfig } from 'libs/backend/shared/src/lib/configs';
 import { UserModule } from '../user/user.module';
-import { AuthController } from './auth.controller';
+import { AuthNormalController } from './auth.normal.controller';
+import { AuthPublicController } from './auth.public.controller';
 import { AuthService } from './auth.service';
 
 @Module({
@@ -26,6 +27,7 @@ import { AuthService } from './auth.service';
     ConfigModule.forFeature(jwtConfig),
     UserModule,
   ],
+  controllers: [AuthNormalController, AuthPublicController],
   providers: [
     AuthService,
     {
@@ -33,6 +35,5 @@ import { AuthService } from './auth.service';
       useClass: AuthGuard,
     },
   ],
-  controllers: [AuthController],
 })
 export class AuthModule {}

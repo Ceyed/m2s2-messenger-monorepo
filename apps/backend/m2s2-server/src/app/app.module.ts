@@ -15,6 +15,8 @@ import { AppService } from './app.service';
       isGlobal: true,
       cache: true,
     }),
+    ConfigModule.forFeature(appConfig),
+    // todo @ceyed custom class
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -25,7 +27,6 @@ import { AppService } from './app.service';
       autoLoadEntities: true,
       synchronize: false,
     }),
-    ConfigModule.forFeature(appConfig),
     AuthModule,
     UserModule,
   ],

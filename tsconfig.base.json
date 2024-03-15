@@ -24,24 +24,17 @@
     "esModuleInterop": true,
     "paths": {
       "@m2s2/backend/dtos": ["libs/backend/m2s2-server/src/lib/dtos/index.ts"],
-      "@m2s2/backend/entities": [
-        "libs/backend/m2s2-server/src/lib/database/entities/index.ts"
-      ],
-      "@m2s2/backend/shared/configs": [
-        "libs/backend/shared/src/lib/configs/index.ts"
-      ],
-      "@m2s2/backend/shared/entities": [
-        "libs/backend/shared/src/lib/entities/index.ts"
-      ],
-      "@m2s2/backend/shared/guards": [
-        "libs/backend/shared/src/lib/guards/index.ts"
-      ],
-      "@m2s2/backend/shared/pipes": [
-        "libs/backend/shared/src/lib/pipes/index.ts"
-      ],
-      "@m2s2/backend/shared/utils": [
-        "libs/backend/shared/src/lib/utils/index.ts"
-      ],
+      "@m2s2/backend/entities": ["libs/backend/m2s2-server/src/lib/database/entities/index.ts"],
+      "@m2s2/backend/enums": ["libs/backend/m2s2-server/src/lib/enums/index.ts"],
+
+      "@m2s2/backend/shared/configs": ["libs/backend/shared/src/lib/configs/index.ts"],
+      "@m2s2/backend/shared/entities": ["libs/backend/shared/src/lib/entities/index.ts"],
+      "@m2s2/backend/shared/guards": ["libs/backend/shared/src/lib/guards/index.ts"],
+      "@m2s2/backend/shared/pipes": ["libs/backend/shared/src/lib/pipes/index.ts"],
+      "@m2s2/backend/shared/utils": ["libs/backend/shared/src/lib/utils/index.ts"],
+      "@m2s2/backend/shared/enums": ["libs/backend/shared/src/lib/enums/index.ts"],
+      "@m2s2/backend/shared/decorators": ["libs/backend/shared/src/lib/decorators/index.ts"],
+
       "@m2s2/shared/common": ["libs/shared/common/src/index.ts"],
       "@m2s2/shared/m2s2": ["libs/shared/m2s2/src/index.ts"]
     }

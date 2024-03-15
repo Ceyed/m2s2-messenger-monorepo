@@ -6,7 +6,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { validate } from 'class-validator';
+import { ValidationError, validate } from 'class-validator';
 
 @Injectable()
 export class GlobalValidationPipe implements PipeTransform<any> {
@@ -23,7 +23,8 @@ export class GlobalValidationPipe implements PipeTransform<any> {
     if (type === 'custom' || typeof instance !== 'object') {
       return value;
     }
-    const errors = await validate(instance);
+
+    const errors: ValidationError[] = await validate(instance);
     if (errors.length > 0) {
       throw new BadRequestException(
         errors
