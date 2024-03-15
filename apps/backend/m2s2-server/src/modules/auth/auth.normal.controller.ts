@@ -10,8 +10,6 @@ export class AuthNormalController {
 
   @Get('profile')
   getProfile(@Request() req) {
-    console.log('a');
-
     return req.user;
   }
 }

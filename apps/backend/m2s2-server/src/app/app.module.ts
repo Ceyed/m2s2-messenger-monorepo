@@ -1,8 +1,9 @@
-import { appConfig } from '@m2s2/backend/shared/configs';
+import { appConfig, typeormConfig } from '@m2s2/backend/shared/configs';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigType } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSourceOptions } from 'typeorm';
 import { AuthModule } from '../modules/auth/auth.module';
 import { UserModule } from '../modules/user/user.module';
 import { GlobalValidationPipe } from './../../../../../libs/backend/shared/src/lib/pipes/global-validation.pipe';
@@ -16,17 +17,27 @@ import { AppService } from './app.service';
       cache: true,
     }),
     ConfigModule.forFeature(appConfig),
-    // todo @ceyed custom class
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '123',
-      database: 'm2s2',
-      autoLoadEntities: true,
-      synchronize: false,
+
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule.forFeature(typeormConfig)],
+      useFactory: (typeormConfigService: ConfigType<typeof typeormConfig>) =>
+        ({
+          schema: 'public',
+          logging: 'all',
+          migrationsTableName: 'migrations',
+
+          type: typeormConfigService.type,
+          host: typeormConfigService.host,
+          port: typeormConfigService.port,
+          username: typeormConfigService.username,
+          password: typeormConfigService.password,
+          database: typeormConfigService.database,
+          autoLoadEntities: typeormConfigService.autoLoadEntities,
+          synchronize: typeormConfigService.synchronize,
+        } as DataSourceOptions),
+      inject: [typeormConfig.KEY],
     }),
+
     AuthModule,
     UserModule,
   ],
