@@ -18,11 +18,28 @@
     "sharedGlobals": []
   },
   "generators": {
-    "@nx/next": {
+    "@nx/react": {
       "application": {
+        "babel": true,
+        "style": "scss",
+        "linter": "eslint",
+        "bundler": "rspack"
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
         "style": "scss",
         "linter": "eslint"
       }
     }
-  }
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ]
 }

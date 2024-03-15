@@ -1,53 +1,65 @@
 {
-  "name": "frontend-m2s2",
+  "name": "m2s2-web",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/frontend/m2s2-web",
+  "sourceRoot": "apps/frontend/m2s2-web/src",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/next:build",
+      "executor": "@nx/rspack:rspack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/frontend/m2s2-web",
-        "outputPath": "dist/apps/frontend/m2s2-web"
+        "target": "web",
+        "outputPath": "dist/apps/frontend/m2s2-web",
+        "main": "apps/frontend/m2s2-web/src/main.tsx",
+        "tsConfig": "apps/frontend/m2s2-web/tsconfig.app.json",
+        "rspackConfig": "apps/frontend/m2s2-web/rspack.config.js",
+        "assets": [
+          "apps/frontend/m2s2-web/src/favicon.ico",
+          "apps/frontend/m2s2-web/src/assets"
+        ]
       },
       "configurations": {
         "development": {
-          "outputPath": "apps/frontend/m2s2-web"
-        },
-        "production": {}
-      }
-    },
-    "serve": {
-      "executor": "@nx/next:server",
-      "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "frontend-m2s2:build",
-        "dev": true
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "frontend-m2s2:build:development",
-          "dev": true
+          "mode": "development"
         },
         "production": {
-          "buildTarget": "frontend-m2s2:build:production",
-          "dev": false
+          "mode": "production",
+          "optimization": true,
+          "sourceMap": false
         }
       }
     },
-    "export": {
-      "executor": "@nx/next:export",
+    "serve": {
+      "executor": "@nx/rspack:dev-server",
       "options": {
-        "buildTarget": "frontend-m2s2:build:production"
+        "buildTarget": "m2s2-web:build:development"
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "buildTarget": "m2s2-web:build:production"
+        }
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+    "serve-static": {
+      "executor": "@nx/web:file-server",
       "options": {
-        "lintFilePatterns": ["apps/frontend/m2s2-web/**/*.{ts,tsx,js,jsx}"]
+        "buildTarget": "m2s2-web:build"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/frontend/m2s2-web/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     }
   },
