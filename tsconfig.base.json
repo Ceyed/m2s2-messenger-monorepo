@@ -34,6 +34,9 @@
       "@m2s2/backend/shared/utils": ["libs/backend/shared/src/lib/utils/index.ts"],
       "@m2s2/backend/shared/enums": ["libs/backend/shared/src/lib/enums/index.ts"],
       "@m2s2/backend/shared/decorators": ["libs/backend/shared/src/lib/decorators/index.ts"],
+      "@m2s2/backend/shared/constants": ["libs/backend/shared/src/lib/constants/index.ts"],
+      "@m2s2/backend/shared/interfaces": ["libs/backend/shared/src/lib/interfaces/index.ts"],
+      "@m2s2/backend/shared/types": ["libs/backend/shared/src/lib/types/index.ts"],
 
       "@m2s2/shared/common": ["libs/shared/common/src/index.ts"],
       "@m2s2/shared/m2s2": ["libs/shared/m2s2/src/index.ts"]

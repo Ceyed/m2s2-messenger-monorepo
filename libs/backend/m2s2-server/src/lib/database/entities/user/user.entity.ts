@@ -22,6 +22,13 @@ export class UserEntity extends BaseEntity {
   @Exclude()
   password: string;
 
+  @Column()
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  @Exclude()
+  salt: string;
+
   @Column({ nullable: true })
   @ApiPropertyOptional()
   @IsString()
