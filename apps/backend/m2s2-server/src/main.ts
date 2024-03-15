@@ -1,7 +1,7 @@
+import { AppConfig, appConfig } from '@m2s2/backend/shared/configs';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppConfig, appConfig } from 'libs/backend/shared/src/lib/configs';
 import { AppModule } from './app/app.module';
 
 async function bootstrap(): Promise<void> {

@@ -1,4 +1,5 @@
 import { appConfig, typeormConfig } from '@m2s2/backend/shared/configs';
+import { GlobalValidationPipe } from '@m2s2/backend/shared/pipes';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigType } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
@@ -6,7 +7,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSourceOptions } from 'typeorm';
 import { AuthModule } from '../modules/auth/auth.module';
 import { UserModule } from '../modules/user/user.module';
-import { GlobalValidationPipe } from './../../../../../libs/backend/shared/src/lib/pipes/global-validation.pipe';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 

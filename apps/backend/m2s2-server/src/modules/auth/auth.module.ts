@@ -1,10 +1,10 @@
+import { JwtConfig, bcryptConfig, jwtConfig } from '@m2s2/backend/shared/configs';
 import { AuthGuard } from '@m2s2/backend/shared/guards';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtModuleOptions } from '@nestjs/jwt/dist/interfaces/jwt-module-options.interface';
-import { JwtConfig, bcryptConfig, jwtConfig } from 'libs/backend/shared/src/lib/configs';
 import { UserModule } from '../user/user.module';
 import { AuthNormalController } from './auth.normal.controller';
 import { AuthPublicController } from './auth.public.controller';

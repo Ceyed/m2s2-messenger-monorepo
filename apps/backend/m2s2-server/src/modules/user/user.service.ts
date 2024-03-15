@@ -1,9 +1,8 @@
-import { UpdateUserProfileDto } from '@m2s2/backend/dtos';
+import { RegisterDto, UpdateUserProfileDto } from '@m2s2/backend/dtos';
 import { UserEntity, UserRepository } from '@m2s2/backend/entities';
 import { UserAuth } from '@m2s2/backend/shared/types';
 import { UpdateResultDto } from '@m2s2/shared/common';
 import { Injectable } from '@nestjs/common';
-import { RegisterDto } from 'libs/backend/m2s2-server/src/lib/dtos/auth/register.dto';
 
 @Injectable()
 export class UserService {
